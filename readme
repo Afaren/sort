@@ -1,7 +1,7 @@
 this is a template of sort algorithms
 
 mkdir xxxSort && cd xxxSort
-cp ../xxxSort.c .
+cp ../xxxSort.c
 change name of the sort algorithms you praticing 
 
 
