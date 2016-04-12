@@ -45,8 +45,8 @@ void InsertSort( int array[], int size)
 
 	for ( i = 1; i < size; i++ ) {
 		//将a[i]插入到a[i-1]、a[i-2]、a[i-3]...之中
-		for( j = i; j > 0 ; j-- )
-			if ( less(array[j], array[j-1]) )
+		//less() 放在判断在循环判断中，一旦找到一个比当前元素小的元素，就可以停止继续比较。因为在这一趟中，这就是当前元素应该放置的位置，不需要继续比较
+		for( j = i; j > 0 && less(array[j], array[j-1]); j-- )
 				exch(array, j, j-1);
 	}
 
