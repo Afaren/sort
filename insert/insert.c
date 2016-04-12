@@ -1,12 +1,18 @@
 
+//Tue Apr 12 16:02:58 CST 2016
+
+
+#include<assert.h>
 #include<stdio.h>
 
 void exch(int array[], int index_1, int index_2 );
 int less(int v1, int v2 );
 int isSorted(int array[], int size );
 
+
 void printArray(int array[], int size);
-void  xxxSort(int array[], int size );
+void InsertSort(int array[], int size );
+
 
 
 int main(void)
@@ -21,20 +27,31 @@ int main(void)
 	printf("Before sort: ");
 	printArray(array, size);
 	//sort the array
-	// xxxSort(array, size);
+	InsertSort(array, size);
 	printf("After  sort: ");	
 	printArray(array, size);
+
 	
 	//is the array sorted? 
 	assert( isSorted(array, size) );
-	
 	return 0;
 }
 
-void xxxSort( int array[], int size)
+
+
+void InsertSort( int array[], int size)
 {
-	//implement you code here
+	int i, j;
+
+	for ( i = 1; i < size; i++ ) {
+		//将a[i]插入到a[i-1]、a[i-2]、a[i-3]...之中
+		for( j = i; j > 0 ; j-- )
+			if ( less(array[j], array[j-1]) )
+				exch(array, j, j-1);
+	}
+
 }
+
 
 void printArray(int array[], int size)
 {
@@ -44,7 +61,6 @@ void printArray(int array[], int size)
 	}
 	printf("\n");
 }
-
 
 int isSorted(int array[], int size )
 {
