@@ -1,12 +1,9 @@
-/*************************************************************************
-	> File Name: select.c
-	> Author: Afar
-	> Mail: 550047450@qq.com 
-	> Created Time: Sun 10 Apr 2016 06:09:05 PM PDT
- ************************************************************************/
-
+#include<assert.h>
 #include<stdio.h>
 
+void exch(int array[], int index_1, int index_2 );
+int less(int v1, int v2 );
+int isSorted(int array[], int size );
 
 void printArray(int array[], int size);
 void  SelectSort(int array[], int size );
@@ -27,9 +24,27 @@ int main(void)
 	SelectSort(array, size);
 	printf("After  sort: ");	
 	printArray(array, size);
+	
+	//is the array sorted? 
+	assert( isSorted(array, size) );
+	
 	return 0;
 }
 
+void SelectSort( int array[], int size)
+{
+	//implement you code here
+	int i, j, min;
+
+	for ( i = 0; i < size; i++ ) {
+		min = i; 
+		for ( j = i+1; j < size; j++ )
+			if ( less(array[j], array[min] ) )
+					min = j;
+		if ( min != i )
+			exch( array, min, i );
+	}
+}
 
 void printArray(int array[], int size)
 {
@@ -40,21 +55,27 @@ void printArray(int array[], int size)
 	printf("\n");
 }
 
-void SelectSort( int array[], int size)
+
+int isSorted(int array[], int size )
 {
-	int min;
-	int i, j, temp;
-	for ( i = 0; i < size; i++ ) {
-		min = i;
-		for ( j = i + 1; j < size; j++ ) 
-			if ( array[min] > array[j] ) {
-				min = j;
-			}
-		if ( min != i ){
-			temp = array[i];
-			array[i] = array[min];
-			array[min] = temp;
-		}
+
+	int i;
+	for ( i = 1; i < size; i++ ){
+		if ( less ( array[i], array[i-1] ) ) 
+			return 0;
 	}
+	return 1;
+}
+
+int less(int v1, int v2 )
+{
+	return v1 <= v2;
+}
+
+void exch(int array[], int index_1, int index_2 )
+{
+	int temp = array[index_1];
+	array[index_1] = array[index_2];
+	array[index_2] = temp;
 }
 

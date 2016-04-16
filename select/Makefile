@@ -3,4 +3,4 @@ select : select.c
 
 
 clean:
-	rm *out
+	rm *out *out.stackdump

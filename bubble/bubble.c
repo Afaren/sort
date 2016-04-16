@@ -1,20 +1,21 @@
-
-//Sun Apr 10 18:52:41 PDT 2016
-
-
-
-
+#include<assert.h>
 #include<stdio.h>
 
+void exch(int array[], int index_1, int index_2 );
+int less(int v1, int v2 );
+int isSorted(int array[], int size );
 
 void printArray(int array[], int size);
-void  BubbleSort(int array[], int size );
+void BubbleSort(int array[], int size );
 
 
 int main(void)
 {
+
+
+
 	int array[] = {3, 8, 5, 9, 1, 4, 6, 7, 2, 12, 90, 33};
-	int size = 12;
+	int size = sizeof(array)/sizeof(int);
 
 
 	printf("Before sort: ");
@@ -23,9 +24,24 @@ int main(void)
 	BubbleSort(array, size);
 	printf("After  sort: ");	
 	printArray(array, size);
+	
+	//is the array sorted? 
+	assert( isSorted(array, size) );
+	
 	return 0;
 }
 
+void BubbleSort( int array[], int size)
+{
+	//implement you code here
+	int i, j;
+	for (i = 0; i < size; i++ )
+		for ( j = 1; j < size - i; j++ ) 
+			if ( less( array[j], array[j-1] ) )
+					exch( array, j, j-1 );
+					
+
+}
 
 void printArray(int array[], int size)
 {
@@ -36,16 +52,27 @@ void printArray(int array[], int size)
 	printf("\n");
 }
 
-void BubbleSort( int array[], int size)
+
+int isSorted(int array[], int size )
 {
-	int i, j, temp;
-	for ( i = 0; i < size; i++ ){
-		for ( j = 1; j < size - i; j++ ){
-			if ( array[j] < array[j-1] ) {
-				temp = array[j];
-				array[j] = array[j-1];
-				array[j-1] = temp;
-			}
-		}
+
+	int i;
+	for ( i = 1; i < size; i++ ){
+		if ( less ( array[i], array[i-1] ) ) 
+			return 0;
 	}
+	return 1;
 }
+
+int less(int v1, int v2 )
+{
+	return v1 <= v2;
+}
+
+void exch(int array[], int index_1, int index_2 )
+{
+	int temp = array[index_1];
+	array[index_1] = array[index_2];
+	array[index_2] = temp;
+}
+

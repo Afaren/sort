@@ -1,4 +1,4 @@
-
+#include<assert.h>
 #include<stdio.h>
 
 void exch(int array[], int index_1, int index_2 );
