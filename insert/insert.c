@@ -33,15 +33,11 @@ int main(void)
 
 void InsertSort( int array[], int size)
 {
-	//implement you code here
 	int i, j;
-	// 还是用i表示有序区这一概念比较好，所以，将i初始化为0，表示一开始有序区长度为0
-	// 内循环j第一次循环时，j从1开始，表示将第二个元素插入到最终的位置
-	// 因为一开始就是用第二个元素跟第一个元素比较，所以，外循环的次数应该是数组长度减一。
-	// 因为如果循环次数是数组长度的话，最后一次循环就是数组最后一个元素的后一个（越界）跟最后一个比较了
-	for ( i = 0; i < size - 1 ; i++ )
-		for ( j = i + 1; j > 0 && less( array[j], array[j-1] ); j-- )
-			exch( array, j, j-1 );
+	for ( i = 1; i < size; i++ )
+		for ( j = i; j > 0 && less(array[j], array[j-1]); j-- )
+			exch(array, j, j-1);
+			
 
 }
 

@@ -30,33 +30,34 @@ int main(void)
 	return 0;
 }
 
-void MergeSort(int sourceArr[], int tempArr[], int startIndex, int endIndex)
+void MergeSort(int sourceArr[], int tempArr[], int lo, int hi)
 {
-	
-	if (  endIndex<= startIndex ) return;
-	int	midIndex = (startIndex + endIndex) / 2;
-	MergeSort(sourceArr, tempArr, startIndex, midIndex);
-	MergeSort(sourceArr, tempArr, midIndex+1, endIndex);
-	Merge(sourceArr, tempArr, startIndex, midIndex, endIndex);
-
-
+	if ( lo >= hi )return;
+	int mid = (lo+hi)/2;
+	MergeSort(sourceArr, tempArr, lo, mid);
+	MergeSort(sourceArr, tempArr, mid+1, hi);
+	Merge(sourceArr, tempArr, lo, mid, hi);
 }
-void  Merge(int sourceArr[], int tempArr[], int startIndex, int midIndex, int endIndex)
+
+
+
+void  Merge(int sourceArr[], int tempArr[], int lo, int mid, int hi)
 {
-	int i = startIndex, j = midIndex+1, k = startIndex;
+	int i = lo, j = mid+1, k = lo;
 
-	for ( ; k <= endIndex; k++ )
-		tempArr[k] = sourceArr[k];
+	for ( i = lo; i <= hi; i++ )
+		tempArr[i] = sourceArr[i];
 
-	for ( k = startIndex; k <= endIndex; k++ )
-		if (i > midIndex)
-			sourceArr[k] = tempArr[j++];
-		else if (j > endIndex)
-			sourceArr[k] = tempArr[i++];
-		else if (less(tempArr[j], tempArr[i]))
-			sourceArr[k] = tempArr[j++];
-		else
-			sourceArr[k] = tempArr[i++];
+	for ( i = lo; i <= hi; i++ )
+		if ( j > hi )
+			sourceArr[i] = tempArr[k++];
+		else if ( k > mid )
+			sourceArr[i] = tempArr[j++];
+		else if ( less(tempArr[k], tempArr[j]) )
+			sourceArr[i] = tempArr[k++];
+		else 
+			sourceArr[i] = tempArr[j++];
+
 }
 
 

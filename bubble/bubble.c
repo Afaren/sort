@@ -33,13 +33,14 @@ int main(void)
 
 void BubbleSort( int array[], int size)
 {
-	//implement you code here
 	int i, j;
-	for (i = 0; i < size; i++ )
-		for ( j = 1; j < size - i; j++ ) 
-			if ( less( array[j], array[j-1] ) )
-					exch( array, j, j-1 );
-					
+	for ( i = 0; i < size; i++ )
+		for ( j = 1; j < size - i; j++ )
+			//前面一个比后面一个大，就交换
+			if ( less(array[j], array[j-1] ) ) 
+					exch(array, j-1, j);
+
+
 
 }
 
