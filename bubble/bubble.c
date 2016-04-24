@@ -6,7 +6,7 @@ int less(int v1, int v2 );
 int isSorted(int array[], int size );
 
 void printArray(int array[], int size);
-void BubbleSort(int array[], int size );
+void  BubbleSort(int array[], int size );
 
 
 int main(void)
@@ -15,7 +15,7 @@ int main(void)
 
 
 	int array[] = {3, 8, 5, 9, 1, 4, 6, 7, 2, 12, 90, 33};
-	int size = sizeof(array)/sizeof(int);
+	int size = 12;
 
 
 	printf("Before sort: ");
@@ -34,14 +34,11 @@ int main(void)
 void BubbleSort( int array[], int size)
 {
 	int i, j;
+	int *a = array;
 	for ( i = 0; i < size; i++ )
 		for ( j = 1; j < size - i; j++ )
-			//前面一个比后面一个大，就交换
-			if ( less(array[j], array[j-1] ) ) 
-					exch(array, j-1, j);
-
-
-
+			if ( less(a[j], a[j-1] ) )
+				exch(a, j,j-1);
 }
 
 void printArray(int array[], int size)

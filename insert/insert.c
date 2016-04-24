@@ -6,7 +6,7 @@ int less(int v1, int v2 );
 int isSorted(int array[], int size );
 
 void printArray(int array[], int size);
-void InsertSort(int array[], int size );
+void  InsertSort(int array[], int size );
 
 
 int main(void)
@@ -15,7 +15,7 @@ int main(void)
 
 
 	int array[] = {3, 8, 5, 9, 1, 4, 6, 7, 2, 12, 90, 33};
-	int size = sizeof(array) / sizeof(int) ;
+	int size = 12;
 
 
 	printf("Before sort: ");
@@ -33,11 +33,15 @@ int main(void)
 
 void InsertSort( int array[], int size)
 {
+	int *a = array;
 	int i, j;
-	for ( i = 1; i < size; i++ )
-		for ( j = i; j > 0 && less(array[j], array[j-1]); j-- )
-			exch(array, j, j-1);
-			
+	for ( i = 0; i < size-1; i++ )
+		for ( j = i+1; j>0 && less(a[j], a[j-1]); j-- )
+			exch(a, j, j-1);
+
+
+
+
 
 }
 

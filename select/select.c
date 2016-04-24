@@ -33,17 +33,18 @@ int main(void)
 
 void SelectSort( int array[], int size)
 {
+int *a = array;
 	int i, j, min;
 	for ( i = 0; i < size; i++ ) {
 		min = i;
 		for ( j = i+1; j < size; j++ )
-			if ( less(array[j], array[min]) )
+			if (  less(a[j], a[min]) )
 				min = j;
-//一开始将这个部分放在了外面，所以失败了，哈哈
-		if ( min != i )
-			exch(array, min, i);
 
+		if ( min != i )
+			exch(a, min, i);	
 	}
+	
 }
 
 void printArray(int array[], int size)

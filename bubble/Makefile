@@ -3,4 +3,4 @@ bubble : bubble.c
 
 
 clean:
-	rm *out
+	rm *out*

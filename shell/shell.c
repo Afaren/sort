@@ -6,21 +6,22 @@ int less(int v1, int v2 );
 int isSorted(int array[], int size );
 
 void printArray(int array[], int size);
-void MergeSort(int array[], int temp[], int lower, int upper );
-void Merge(int array[], int temp[], int lower, int mid, int upper);
-
+void  ShellSort(int array[], int size );
 
 
 int main(void)
 {
+
+
+
 	int array[] = {3, 8, 5, 9, 1, 4, 6, 7, 2, 12, 90, 33};
 	int size = 12;
-	int temp[12];
+
 
 	printf("Before sort: ");
 	printArray(array, size);
 	//sort the array
-	MergeSort(array, temp, 0, size-1);
+	ShellSort(array, size);
 	printf("After  sort: ");	
 	printArray(array, size);
 	
@@ -30,34 +31,21 @@ int main(void)
 	return 0;
 }
 
-void MergeSort(int array[], int temp[], int lower, int upper )
-{
-
-	if ( lower >= upper )
-		return ;
-	int mid = (lower+upper) / 2;
-	MergeSort(array, temp, lower, mid);
-	MergeSort(array, temp, mid+1, upper);
-	Merge(array, temp, lower, mid, upper);
-}
-void Merge(int array[], int temp[], int lower, int mid, int upper)
+void ShellSort( int array[], int size)
 {
 	int *a = array;
-	int i = lower, j = mid+1, k = lower;
-
-	for ( ; i <= upper; i++ )
-		temp[i] = a[i];
-
-
-	for ( i = lower; i <= upper; i++ )
-		if ( j > upper ) // 右边取尽
-			a[i] = temp[k++];
-		else if ( k > mid ) // 左边取尽
-			a[i] = temp[j++];
-		else if ( less(temp[k], temp[j]) ) // 左边的元素小
-			a[i] = temp[k++];
-		else				// 右边元素小
-			a[i] = temp[j++];
+	int i, j, h = 1; 
+	int N = size;
+	while ( h < N/3 ) h = 3*h + 1;
+	while ( h >= 1 ){
+		for ( i = h; i < N; i++ ) {
+			for ( j = i; j >=h && less(a[j], a[j-h]); j-=h )
+				exch( a, j, j-h );
+				//printf("i:%-2dj:%-2dh:%-2d || ",i,j, h);
+				//printArray(array, size);
+		}
+		h = h/3;	
+	}
 }
 
 void printArray(int array[], int size)
