@@ -33,19 +33,19 @@ int main(void)
 
 void ShellSort( int array[], int size)
 {
-	int *a = array;
-	int i, j, h = 1; 
+	int i, j;
 	int N = size;
-	while ( h < N/3 ) h = 3*h + 1;
-	while ( h >= 1 ){
-		for ( i = h; i < N; i++ ) {
-			for ( j = i; j >=h && less(a[j], a[j-h]); j-=h )
+	int h = 1;
+	int *a = array;
+	while ( h < N/3 ) h = h*3 + 1;
+	while ( h >= 1 ) {
+		for ( i = h; i < N; i++ )
+			for ( j = i; j >=h && less( a[j], a[j-h] ); j-=h )
 				exch( a, j, j-h );
-				//printf("i:%-2dj:%-2dh:%-2d || ",i,j, h);
-				//printArray(array, size);
-		}
-		h = h/3;	
+		h = h / 3;
 	}
+
+
 }
 
 void printArray(int array[], int size)
